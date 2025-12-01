@@ -20,7 +20,8 @@ let authRoutes,
   revenueRoutes,
   roomRoutes,
   genreRoutes,
-  adminRoutes;
+  adminRoutes,
+  paymentRoutes;
 
 try {
   authRoutes = require("./routes/auth");
@@ -96,6 +97,12 @@ try {
 } catch (error) {
   console.log("❌ adminRoutes import failed:", error.message);
 }
+try {
+  paymentRoutes = require("./routes/payments");
+  console.log("✅ paymentRoutes imported");
+} catch (error) {
+  console.log("❌ paymentRoutes import failed:", error.message);
+}
 const app = express();
 
 // Middleware
@@ -165,6 +172,10 @@ if (adminRoutes) {
   app.use("/api/admin", adminRoutes);
   console.log("✅ /api/admin mounted");
 }
+if (paymentRoutes) {
+  app.use("/api/payments", adminRoutes);
+  console.log("✅ /api/payments mounted");
+}
 
 // Health check endpoint
 app.get("/health", (req, res) => {
@@ -184,6 +195,7 @@ app.get("/health", (req, res) => {
       room: !!roomRoutes,
       genre: !!genreRoutes,
       admin: !!adminRoutes,
+      payment: !!paymentRoutes,
     },
   });
 });
@@ -254,6 +266,9 @@ const startServer = async () => {
       console.log(`   ✅ /api/rooms- ${roomRoutes ? "Loaded" : "Failed"}`);
       console.log(`   ✅ /api/genres - ${genreRoutes ? "Loaded" : "Failed"}`);
       console.log(`   ✅ /api/admin - ${adminRoutes ? "Loaded" : "Failed"}`);
+      console.log(
+        `   ✅ /api/payments - ${paymentRoutes ? "Loaded" : "Failed"}`
+      );
     });
   } catch (error) {
     console.error("❌ Failed to start server:", error);

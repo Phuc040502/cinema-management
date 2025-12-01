@@ -4,7 +4,7 @@ NODE_ENV=development
 
 # Database Configuration
 DB_SERVER=localhost
-DB_NAME=CinemaManagement
+DB_NAME=CNHD
 DB_USER=sa
 DB_PASSWORD=123
 DB_PORT=1433
