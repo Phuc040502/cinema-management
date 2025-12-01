@@ -1,0 +1,14 @@
+# Server Configuration
+PORT=3000
+NODE_ENV=development
+
+# Database Configuration
+DB_SERVER=localhost
+DB_NAME=CinemaManagement
+DB_USER=sa
+DB_PASSWORD=123
+DB_PORT=1433
+DB_ENCRYPT=false
+
+# JWT Configuration
+JWT_SECRET=cinema_management_super_secret_key_change_in_production
